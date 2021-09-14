@@ -8,6 +8,15 @@
         padding: 20px;
         margin-right: 40px;
         margin-bottom: 40px;
+        .pizza {
+            background: url('../app/pizza.svg') center center/contain no-repeat;
+        }
+        .salads {
+            background: url('../app/salad.svg') center center/contain no-repeat;
+        }
+        .meat {
+            background: url('../app/meat.svg') center center/contain no-repeat;
+        }
     }
     &__title {
         font-size: 22px;
@@ -27,6 +36,15 @@
         margin-bottom: 10px;
         span {
             font-weight: 700;
+        }
+    }
+    &__category {
+        &_Img {
+            display: inline-block;
+            vertical-align: top;
+            margin-left: 10px;
+            width: 20px;
+            height: 20px;
         }
     }
     &__btn {

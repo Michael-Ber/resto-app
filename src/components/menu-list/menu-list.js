@@ -18,6 +18,9 @@ class MenuList extends Component {
             .then(res => this.props.menuLoaded(res))
             .catch(error => this.props.menuError())
     }
+    chooseItem() {
+        console.log('here');
+    }
     render() {
         const {menuItems, loading, error} = this.props;
         if(error) {
@@ -27,7 +30,7 @@ class MenuList extends Component {
             return <Spinner/>
         }
         const items = menuItems.map(menuItem => {
-            return <MenuListItem key={menuItem.id} menuItem={menuItem}/>
+            return <MenuListItem key={menuItem.id} menuItem={menuItem} onClick={this.chooseItem}/>
         });
         return (
             <View items={items}/>

@@ -1,7 +1,7 @@
 import React from 'react';
-import {MainPage, CartPage} from '../pages';
+import {MainPage, CartPage, ItemPage} from '../pages';
 import AppHeader from '../app-header';
-import {BrowserRouter as Route, Switch} from 'react-router-dom';
+import {Route, Switch} from 'react-router-dom';
 import Background from './food-bg.jpg';
 
 const App = () => {
@@ -10,14 +10,10 @@ const App = () => {
             
                 <AppHeader total={50}/>
                 <Switch>
-                    <Route path="/" exact><MainPage/></Route>
-                    <Route path="/cart" exact><CartPage/></Route>
-                    <Route exact>
-                        <MainPage/>
-                    </Route>
+                    <Route path="/" exact component={MainPage}/>
+                    <Route path="/cart" exact component={CartPage}/>
+                    <Route path ='/:id' component={ItemPage}/>
                 </Switch>
-            
-            
         </div>
     )
 }
