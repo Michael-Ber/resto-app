@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import MenuListItem from '../menu-list-item';
 import {connect} from 'react-redux';
 import WithRestoService from '../hoc/with-resto-service';
-import { menuLoaded, menuRequested, menuError } from '../../actions';
+import { menuLoaded, menuRequested, menuError, addedToCart } from '../../actions';
 import Spinner from '../spinner';
 import Error from '../error';
 
@@ -12,17 +12,13 @@ class MenuList extends Component {
 
     componentDidMount() {
         this.props.menuRequested();
-        this.props.menuError();
         const {RestoService} = this.props;
         RestoService.getMenuItems()
             .then(res => this.props.menuLoaded(res))
             .catch(error => this.props.menuError())
     }
-    chooseItem() {
-        console.log('here');
-    }
     render() {
-        const {menuItems, loading, error} = this.props;
+        const {menuItems, loading, error, addedToCart} = this.props;
         if(error) {
             return <Error/>
         }
@@ -30,7 +26,10 @@ class MenuList extends Component {
             return <Spinner/>
         }
         const items = menuItems.map(menuItem => {
-            return <MenuListItem key={menuItem.id} menuItem={menuItem} onClick={this.chooseItem}/>
+            return <MenuListItem 
+                        key={menuItem.id} 
+                        menuItem={menuItem} 
+                        onAddToCart={() => addedToCart(menuItem.id)}/>
         });
         return (
             <View items={items}/>
@@ -49,7 +48,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps =  {
     menuLoaded,
     menuRequested,
-    menuError
+    menuError,
+    addedToCart
 }
 
 const View = ({items}) => {

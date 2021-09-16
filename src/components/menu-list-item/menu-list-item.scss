@@ -38,15 +38,6 @@
             font-weight: 700;
         }
     }
-    &__category {
-        &_Img {
-            display: inline-block;
-            vertical-align: top;
-            margin-left: 10px;
-            width: 20px;
-            height: 20px;
-        }
-    }
     &__btn {
         width: 150px;
         height: 40px;
@@ -56,5 +47,9 @@
         color: #fff;
         font-size: 16px;
         cursor: pointer;
+        &:hover {
+            border: 2px solid lightblue;
+            background-color: darken(#29a745, 10%);
+        }
     }
 }
